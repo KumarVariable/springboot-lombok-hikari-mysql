@@ -1,0 +1,24 @@
+# Ignore local folders to commit.
+fileStorage/
+
+# Ignore compiled class file
+*.class
+
+# Ignore maven build folder
+target/
+
+# Ignore eclipse specific files
+.project
+.metadata
+.classpath
+.settings/
+
+# Ignore local build packages
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*.ini

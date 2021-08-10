@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- A special starter[parent pom.xml] that provides useful Maven defaults.Also 
+		provides a dependency-management section so as to skip 'version' tags for 
+		'blessed' dependencies -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.3</version>
+	</parent>
+
+	<groupId>mysql.hikari.lombok.spring.main</groupId>
+	<artifactId>springboot-lombok-hikari-mysql</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+
+	<name>springboot-lombok-hikari-mysql</name>
+	<description>A simple springboot-lombok-hikari-mysql.</description>
+	<developers>
+		<developer>
+			<name>metanoia</name>
+			<email>nkunal@aol.com</email>
+		</developer>
+	</developers>
+
+	<dependencies>
+		<!-- A starter to provide dependencies related to database connectivity,datasource, 
+			jdbc templates, managing connection etc. in your classpath -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+		<!-- Dependency for JDBC Type 4 Drivers -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!-- Add dependency for 'lombok' -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Scans for classes and methods with annotation @ConfigurationProperties 
+			and generates configuration metadata (spring-configuration-metadata.json) 
+			to give information on how to use configuration properties. Check for json 
+			file in your jar - springboot-lombok-hikari-mysql.jar\META-INF\ -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<finalName>springboot-lombok-hikari-mysql</finalName>
+
+		<pluginManagement>
+			<plugins>
+
+				<!-- Configure project specific Java version -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.1</version>
+					<configuration>
+						<source>11</source>
+						<target>11</target>
+					</configuration>
+				</plugin>
+
+				<!-- Provides Spring Boot support in Maven, letting you package executable 
+					jar or war archives and run an application “in-place” -->
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<configuration>
+						<mainClass>mysql.hikari.lombok.spring.main.SpringBootLombokMain</mainClass>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+
+	</build>
+
+
+</project>
