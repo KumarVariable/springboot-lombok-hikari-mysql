@@ -5,8 +5,6 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.ApplicationContext;
 
+import lombok.extern.slf4j.Slf4j;
 import mysql.hikari.lombok.spring.model.Employee;
 import mysql.hikari.lombok.spring.service.EmployeeService;
 
@@ -27,6 +26,7 @@ import mysql.hikari.lombok.spring.service.EmployeeService;
  * @author metanoia
  * @version 1.0
  */
+@Slf4j
 @SpringBootApplication(scanBasePackages = {"mysql.hikari.lombok.spring"})
 @ConfigurationPropertiesScan("mysql.hikari.lombok.spring.config")
 public class SpringBootLombokMain implements CommandLineRunner {
@@ -36,9 +36,6 @@ public class SpringBootLombokMain implements CommandLineRunner {
 
 	@Autowired
 	EmployeeService employeeService;
-
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(SpringBootLombokMain.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootLombokMain.class, args);
@@ -54,32 +51,35 @@ public class SpringBootLombokMain implements CommandLineRunner {
 	 */
 	@Override
 	public void run(String... args) throws Exception {
-		LOGGER.info(" << Total Beans configured at Spring startup =  "
-				+ appContext.getBeanDefinitionCount());
+		log.info(" << Total Beans configured at Spring startup = {} ",
+				appContext.getBeanDefinitionCount());
 
 		Map<String, DataSource> dataSource = appContext
 				.getBeansOfType(DataSource.class);
 
 		dataSource.forEach((k, v) -> {
-			LOGGER.info(k + " - " + v);
+			log.info(k + " - " + v);
 		});
 
-		LOGGER.info("Uncomment code to Find All Employees - limit to 5");
-		
-		 findAllEmployees(employeeService); 
-		 
-		LOGGER.info("Uncomment below code to find salary details by employee id. ");
+		log.info("Uncomment code to Find All Employees - limit to 5");
 
-		 findEmployeeSalary(employeeService, 10009); 
-		 
-		LOGGER.info("Uncomment below code to find department details by employee id."); 
-		
-		 findEmployeeManager(employeeService, 10009); 
-		
-		LOGGER.info("Uncomment below code to find complete details of an Employee."); 
-		
+		findAllEmployees(employeeService);
+
+		log.info(
+				"Uncomment below code to find salary details by employee id. ");
+
+		findEmployeeSalary(employeeService, 10009);
+
+		log.info(
+				"Uncomment below code to find department details by employee id.");
+
+		findEmployeeManager(employeeService, 10009);
+
+		log.info(
+				"Uncomment below code to find complete details of an Employee.");
+
 		findEmployeeDetails(employeeService, 10009);
-		 
+
 	}
 
 	@SuppressWarnings("unused")
@@ -87,7 +87,7 @@ public class SpringBootLombokMain implements CommandLineRunner {
 		List<Employee> employeeList = employeeService.findAllEmployees();
 
 		for (Employee emp : employeeList) {
-			LOGGER.info("Employee details " + emp.toString());
+			log.info("Employee details => {} ", emp.toString());
 		}
 
 	}
@@ -96,8 +96,8 @@ public class SpringBootLombokMain implements CommandLineRunner {
 	private void findEmployeeSalary(EmployeeService employeeService,
 			int employeeId) {
 		Employee employee = employeeService.findEmployeeSalary(employeeId);
-		LOGGER.info("Employee Salary Details of employee id = " + employeeId
-				+ " ------ " + employee.toString());
+		log.info("Employee Salary Details of employee id = {} --->  {}",
+				employeeId, employee.toString());
 
 	}
 
@@ -107,19 +107,17 @@ public class SpringBootLombokMain implements CommandLineRunner {
 
 		Employee employee = employeeService.findEmployeeManager(employeeId);
 
-		LOGGER.info("Employee Manager Details of employee id = " + employeeId
-				+ " ------ " + employee.toString());
+		log.info("Employee Manager Details of employee id = {} ---> {} ",
+				employeeId, employee.toString());
 	}
-	
+
 	private void findEmployeeDetails(EmployeeService employeeService,
 			int employeeId) {
 
 		Employee employee = employeeService.findEmployeeDetails(employeeId);
 
-		LOGGER.info("Employee Manager Details of employee id = " + employeeId
-				+ " ------ " + employee.toString());
+		log.info("Employee Manager Details of employee id = {} ---> {} ",
+				employeeId, employee.toString());
 	}
-	
-	
 
 }
