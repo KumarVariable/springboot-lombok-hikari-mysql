@@ -49,6 +49,18 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- Starter to provide dependencies required for our tests. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+		</dependency>
+
 		<!-- Scans for classes and methods with annotation @ConfigurationProperties 
 			and generates configuration metadata (spring-configuration-metadata.json) 
 			to give information on how to use configuration properties. Check for json 
