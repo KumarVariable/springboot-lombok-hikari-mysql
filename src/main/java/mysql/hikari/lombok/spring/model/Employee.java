@@ -33,6 +33,6 @@ public class Employee {
 	private Map<Integer, EmployeeDepartment> empDepttDetails;
 	private Map<Integer, EmployeeSalaryDetails> empSalaryDetails;
 	private Map<Integer, DepartmentManager> empManagerDetails;
-	private Map<Integer, JobTitle> empJobDetails;
+	private Map<Integer, EmployeeJobTitle> empJobDetails;
 
 }

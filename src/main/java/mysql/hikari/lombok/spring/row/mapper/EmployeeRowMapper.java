@@ -8,7 +8,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Currency;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -19,9 +18,9 @@ import mysql.hikari.lombok.spring.model.DepartmentManager;
 import mysql.hikari.lombok.spring.model.Departments;
 import mysql.hikari.lombok.spring.model.Employee;
 import mysql.hikari.lombok.spring.model.EmployeeDepartment;
+import mysql.hikari.lombok.spring.model.EmployeeJobTitle;
 import mysql.hikari.lombok.spring.model.EmployeeSalaryDetails;
 import mysql.hikari.lombok.spring.model.GenderType;
-import mysql.hikari.lombok.spring.model.JobTitle;
 
 /**
  * Maps returned result set to an Employee object.
@@ -104,7 +103,7 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 		Currency currency = Currency.getInstance("INR");
 		String currencySymbol = currency.getSymbol();
 
-		JobTitle jobTitle = new JobTitle();
+		EmployeeJobTitle jobTitle = new EmployeeJobTitle();
 		Departments department = new Departments();
 		EmployeeDepartment empDeptt = new EmployeeDepartment();
 		EmployeeSalaryDetails salaryDetails = new EmployeeSalaryDetails();
@@ -112,7 +111,7 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 		Map<Integer, EmployeeSalaryDetails> empSalaryDetails = new HashMap<Integer, EmployeeSalaryDetails>();
 		Map<Integer, EmployeeDepartment> empDepttDetails = new HashMap<Integer, EmployeeDepartment>();
 
-		Map<Integer, JobTitle> empJobDetails = new HashMap<Integer, JobTitle>();
+		Map<Integer, EmployeeJobTitle> empJobDetails = new HashMap<Integer, EmployeeJobTitle>();
 
 		try {
 

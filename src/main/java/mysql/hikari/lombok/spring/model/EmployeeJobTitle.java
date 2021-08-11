@@ -19,8 +19,9 @@ import lombok.ToString;
 @ToString
 public class EmployeeJobTitle {
 
-	private int employeeNumber;
+	private int employeeId;
 	private String jobTitle;
+
 	private String jobTitleFromDate;
 	private String jobTitleToDate;
 
