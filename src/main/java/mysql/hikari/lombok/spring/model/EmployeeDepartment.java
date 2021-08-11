@@ -11,7 +11,6 @@ import lombok.ToString;
  * @author metanoia
  * @version 1.0
  */
-
 @Getter
 @Setter
 @NoArgsConstructor

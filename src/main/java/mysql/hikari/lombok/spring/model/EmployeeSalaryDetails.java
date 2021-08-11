@@ -1,22 +1,15 @@
 package mysql.hikari.lombok.spring.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 /**
- * Class represents salary details of an Employee.
+ * Current Salary Details of an Employee.
  * 
  * @author metanoia
  * @version 1.0
  * 
  */
-
-@Getter
-@Setter
-@NoArgsConstructor
-@ToString
+@Data
 public class EmployeeSalaryDetails {
 
 	private int employeeId;

@@ -1,23 +1,20 @@
 package mysql.hikari.lombok.spring.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Class represents information of previous and current manager(s) of department
- * in an organization.
+ * Manager of a Department.
  * 
  * @author metanoia
  * @version 1.0
  * 
  */
 
-@Getter
-@Setter
-@NoArgsConstructor
-@ToString
+@Data
 public class DepartmentManager {
 
 	private int managerId;

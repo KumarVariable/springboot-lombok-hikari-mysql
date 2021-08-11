@@ -1,21 +1,24 @@
 package mysql.hikari.lombok.spring.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
+/**
+ * Gender of an Employee.
+ * 
+ * {@link #FEMALE} {@link #MALE}
+ * 
+ * @author metanoia
+ * @version 1.0
+ * 
+ */
 @Getter
-@NoArgsConstructor
-@ToString
+@AllArgsConstructor
 public enum GenderType {
 
 	MALE("M"), FEMALE("F");
 
 	private String value;
-
-	private GenderType(String value) {
-		this.value = value;
-	}
 
 	public static String getEnumName(String value) {
 
