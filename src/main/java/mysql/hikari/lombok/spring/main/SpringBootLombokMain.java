@@ -61,63 +61,82 @@ public class SpringBootLombokMain implements CommandLineRunner {
 			log.info(k + " - " + v);
 		});
 
-		log.info("Uncomment code to Find All Employees - limit to 5");
+		int dummyEmpId = 10009;
+
+		log.info("Find All Employees - limit to 5");
 
 		findAllEmployees(employeeService);
 
-		log.info(
-				"Uncomment below code to find salary details by employee id. ");
+		log.info("Find salary details for employee {} ", dummyEmpId);
 
-		findEmployeeSalary(employeeService, 10009);
+		findEmployeeSalary(employeeService, dummyEmpId);
 
-		log.info(
-				"Uncomment below code to find department details by employee id.");
+		log.info("Find department details for employee {} ", dummyEmpId);
 
-		findEmployeeManager(employeeService, 10009);
+		findEmployeeManager(employeeService, dummyEmpId);
 
-		log.info(
-				"Uncomment below code to find complete details of an Employee.");
+		log.info("Find complete details for Employee {} ", dummyEmpId);
 
-		findEmployeeDetails(employeeService, 10009);
+		findEmployeeDetails(employeeService, dummyEmpId);
 
 	}
 
-	@SuppressWarnings("unused")
 	private void findAllEmployees(EmployeeService employeeService) {
-		List<Employee> employeeList = employeeService.findAllEmployees();
+		try {
 
-		for (Employee emp : employeeList) {
-			log.info("Employee details => {} ", emp.toString());
+			List<Employee> employeeList = employeeService.findAllEmployees();
+
+			for (Employee emp : employeeList) {
+				log.info("Employees => {} ", emp.toString());
+			}
+		} catch (Exception ex) {
+			log.error("Exception Caught at {} --> {} ",
+					"SpringBootLombokMain.findAllEmployees()", ex.toString());
 		}
 
 	}
 
-	@SuppressWarnings(value = {"unused"})
 	private void findEmployeeSalary(EmployeeService employeeService,
 			int employeeId) {
-		Employee employee = employeeService.findEmployeeSalary(employeeId);
-		log.info("Employee Salary Details of employee id = {} --->  {}",
-				employeeId, employee.toString());
+		try {
+			Employee employee = employeeService.findEmployeeSalary(employeeId);
+			log.info("Employee Salary Details of employee id = {} --->  {}",
+					employeeId, employee.toString());
+		} catch (Exception ex) {
+			log.error("Exception Caught at {} --> {} ",
+					"SpringBootLombokMain.findEmployeeSalary()", ex.toString());
+		}
 
 	}
 
-	@SuppressWarnings(value = {"unused"})
 	private void findEmployeeManager(EmployeeService employeeService,
 			int employeeId) {
 
-		Employee employee = employeeService.findEmployeeManager(employeeId);
+		try {
+			Employee employee = employeeService.findEmployeeManager(employeeId);
 
-		log.info("Employee Manager Details of employee id = {} ---> {} ",
-				employeeId, employee.toString());
+			log.info("Employee Manager Details of employee id = {} ---> {} ",
+					employeeId, employee.toString());
+		} catch (Exception ex) {
+			log.error("Exception Caught at {} --> {} ",
+					"SpringBootLombokMain.findEmployeeManager()",
+					ex.toString());
+		}
 	}
 
 	private void findEmployeeDetails(EmployeeService employeeService,
 			int employeeId) {
 
-		Employee employee = employeeService.findEmployeeDetails(employeeId);
+		try {
+			Employee employee = employeeService.findEmployeeDetails(employeeId);
 
-		log.info("Employee Manager Details of employee id = {} ---> {} ",
-				employeeId, employee.toString());
+			log.info("Employee Manager Details of employee id = {} ---> {} ",
+					employeeId, employee.toString());
+		} catch (Exception ex) {
+			log.error("Exception Caught at {} --> {} ",
+					"SpringBootLombokMain.findEmployeeDetails()",
+					ex.toString());
+		}
 	}
 
 }

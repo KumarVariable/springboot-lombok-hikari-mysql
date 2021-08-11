@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.ObjectUtils;
 
 import lombok.extern.slf4j.Slf4j;
 import mysql.hikari.lombok.spring.config.SqlQueryProperties;
@@ -32,13 +33,16 @@ public class EmployeeDAOImpl implements EmployeeDAO<Employee> {
 
 	@Override
 	public String getDepartmentId(int employeeId) {
+		String departmentId = "";
 		String FIND_DEPTT_NUMBER = queryProperties.getDepartmentId();
 
 		log.info("Find Department Id By Employee Id {}. Query => {} ",
 				employeeId, FIND_DEPTT_NUMBER);
 
-		return jdbcTemplate.queryForObject(FIND_DEPTT_NUMBER, String.class,
-				new Object[]{employeeId});
+		departmentId = jdbcTemplate.queryForObject(FIND_DEPTT_NUMBER,
+				String.class, new Object[]{employeeId});
+
+		return departmentId;
 	}
 
 	@Override
@@ -88,6 +92,13 @@ public class EmployeeDAOImpl implements EmployeeDAO<Employee> {
 
 		Employee employee = getEmpJobSalary(employeeId);
 		String departmentId = getDepartmentId(employeeId);
+
+		if (ObjectUtils.isEmpty(departmentId)) {
+			String msgformat = String.format(
+					"Department Number not found for employee %d ", employeeId);
+			log.error(msgformat);
+			return new Employee();
+		}
 
 		Employee depttDetails = getEmpDepartment(employeeId, departmentId);
 
