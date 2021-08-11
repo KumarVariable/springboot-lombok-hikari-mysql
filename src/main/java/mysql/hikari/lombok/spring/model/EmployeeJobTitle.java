@@ -1,6 +1,7 @@
 package mysql.hikari.lombok.spring.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * Current job status of an Employee.
@@ -10,6 +11,7 @@ import lombok.Data;
  * 
  */
 @Data
+@Accessors(fluent = true)
 public class EmployeeJobTitle {
 
 	private int employeeId;

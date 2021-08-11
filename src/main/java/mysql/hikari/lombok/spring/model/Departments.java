@@ -1,6 +1,7 @@
 package mysql.hikari.lombok.spring.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * Available departments in current organization.
@@ -10,6 +11,7 @@ import lombok.Data;
  * 
  */
 @Data
+@Accessors(fluent = true)
 public class Departments {
 
 	private String departmentId;

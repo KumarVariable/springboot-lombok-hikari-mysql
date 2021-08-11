@@ -122,36 +122,36 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 
 		try {
 
-			department.setDepartmentId(resultSet.getString("department_id"));
+			department.departmentId(resultSet.getString("department_id"));
 
 			empDeptt.setDepartments(department);
 			empDepttDetails.put(resultSet.getInt("employee_id"), empDeptt);
 
-			salaryDetails.setEmployeeId(resultSet.getInt("employee_id"));
+			salaryDetails.employeeId(resultSet.getInt("employee_id"));
 
-			salaryDetails.setEmployeeSalary(resultSet.getInt("current_salary"));
+			salaryDetails.employeeSalary(resultSet.getInt("current_salary"));
 
-			salaryDetails.setSalaryInCurrency(currencySymbol.concat(" ")
-					.concat(String.valueOf(salaryDetails.getEmployeeSalary())));
+			salaryDetails.salaryInCurrency(currencySymbol.concat(" ")
+					.concat(String.valueOf(salaryDetails.employeeSalary())));
 
 			String salaryFromDate = getStringDate(
 					resultSet.getDate("salary_from_date"));
 			String salaryToDate = getStringDate(
 					resultSet.getDate("salary_to_date"));
 
-			salaryDetails.setEmployeeSalaryFromDate(salaryFromDate);
-			salaryDetails.setEmployeeSalaryToDate(salaryToDate);
+			salaryDetails.employeeSalaryFromDate(salaryFromDate);
+			salaryDetails.employeeSalaryToDate(salaryToDate);
 
-			jobTitle.setEmployeeId(resultSet.getInt("employee_id"));
-			jobTitle.setJobTitle(resultSet.getString("job_title"));
+			jobTitle.employeeId(resultSet.getInt("employee_id"));
+			jobTitle.jobTitle(resultSet.getString("job_title"));
 
 			String titleFromDate = getStringDate(
 					resultSet.getDate("title_from_date"));
 			String titleToDate = getStringDate(
 					resultSet.getDate("title_to_date"));
 
-			jobTitle.setJobTitleFromDate(titleFromDate);
-			jobTitle.setJobTitleToDate(titleToDate);
+			jobTitle.jobTitleFromDate(titleFromDate);
+			jobTitle.jobTitleToDate(titleToDate);
 
 			empJobDetails.put(resultSet.getInt("employee_id"), jobTitle);
 			empSalaryDetails.put(resultSet.getInt("employee_id"),
@@ -193,9 +193,8 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 
 		try {
 
-			department.setDepartmentId(resultSet.getString("department_id"));
-			department
-					.setDepartmentName(resultSet.getString("department_name"));
+			department.departmentId(resultSet.getString("department_id"));
+			department.departmentName(resultSet.getString("department_name"));
 
 			empDept.setDepartments(department);
 			empDept.setEmployeeId(resultSet.getInt("employee_id"));
@@ -208,17 +207,17 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 			empDept.setDeptJoiningDate(deptJoiningDate);
 			empDept.setDeptLeavingDate(deptLeavingDate);
 
-			deptMgr.setDepartmentId(resultSet.getString("department_id"));
-			deptMgr.setManagerId(resultSet.getInt("manager_id"));
-			deptMgr.setManagerName(resultSet.getString("manager_name"));
+			deptMgr.departmentId(resultSet.getString("department_id"));
+			deptMgr.managerId(resultSet.getInt("manager_id"));
+			deptMgr.managerName(resultSet.getString("manager_name"));
 
 			String mgrFromDate = getStringDate(
 					resultSet.getDate("manager_from_date"));
 			String mgrToDate = getStringDate(
 					resultSet.getDate("manager_to_date"));
 
-			deptMgr.setManagerFromDate(mgrFromDate);
-			deptMgr.setManagerToDate(mgrToDate);
+			deptMgr.managerFromDate(mgrFromDate);
+			deptMgr.managerToDate(mgrToDate);
 
 			empDepttDetails.put(resultSet.getInt("employee_id"), empDept);
 			empManagerDetails.put(resultSet.getInt("employee_id"), deptMgr);

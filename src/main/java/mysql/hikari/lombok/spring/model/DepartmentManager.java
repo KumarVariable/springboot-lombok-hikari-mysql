@@ -1,10 +1,7 @@
 package mysql.hikari.lombok.spring.model;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.experimental.Accessors;
 
 /**
  * Manager of a Department.
@@ -15,6 +12,7 @@ import lombok.ToString;
  */
 
 @Data
+@Accessors(fluent = true)
 public class DepartmentManager {
 
 	private int managerId;
