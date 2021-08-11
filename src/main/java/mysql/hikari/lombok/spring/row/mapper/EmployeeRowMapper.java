@@ -10,10 +10,9 @@ import java.util.Currency;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
 
+import lombok.extern.slf4j.Slf4j;
 import mysql.hikari.lombok.spring.model.DepartmentManager;
 import mysql.hikari.lombok.spring.model.Departments;
 import mysql.hikari.lombok.spring.model.Employee;
@@ -28,12 +27,10 @@ import mysql.hikari.lombok.spring.model.GenderType;
  * @author metanoia
  * @version 1.0
  */
+@Slf4j
 public class EmployeeRowMapper implements RowMapper<Employee> {
 
 	private final DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(EmployeeRowMapper.class);
 
 	@Override
 	public Employee mapRow(ResultSet resultSet, int rowNum)
@@ -90,13 +87,23 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 			}
 
 		} catch (Exception ex) {
-			LOGGER.error("column doesn't exist {}", source);
+			log.error("Column doesn't exist {}", source);
 		}
 
 		return false;
 
 	}
 
+	/**
+	 * Private Helper method to set result set data for an Employee's
+	 * Designation and Salary details
+	 * 
+	 * @param source
+	 *            (ResultSet), target (Employee)
+	 *
+	 * @return Employee
+	 * 
+	 */
 	private Employee setEmployeeJobDetails(ResultSet resultSet,
 			Employee employee) {
 
@@ -154,16 +161,26 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 			employee.setEmpSalaryDetails(empSalaryDetails);
 			employee.setEmpJobDetails(empJobDetails);
 
-		} catch (Exception ex) {
-			LOGGER.error(
-					"Excepton raised setEmployeeJobDetails() - Employee RowMapper",
-					ex);
+		} catch (Exception exception) {
+			log.error(
+					" EmployeeRowMapper.setEmployeeJobDetails() exception raised -> ",
+					exception);
 
 		}
 
 		return employee;
 	}
 
+	/**
+	 * Private Helper method to set ResultSet data for an Employee's Department
+	 * and Manager.
+	 * 
+	 * @param source
+	 *            (ResultSet), target (Employee)
+	 *
+	 * @return Employee
+	 * 
+	 */
 	private Employee setEmployeeDepartmentDetails(ResultSet resultSet,
 			Employee employee) {
 
@@ -210,14 +227,17 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 			employee.setEmpManagerDetails(empManagerDetails);
 
 		} catch (Exception ex) {
-			LOGGER.error(
-					"Excepton raised setEmployeeDepartmentDetails() - Employee RowMapper",
+			log.error(
+					" EmployeeRowMapper.setEmployeeDepartmentDetails() exception raised  -> {} ",
 					ex);
 		}
 
 		return employee;
 	}
 
+	/**
+	 * Private helper method to format java.sql.Date to String date.
+	 */
 	private String getStringDate(Date date) {
 		return dateFormatter.format(date);
 	}
