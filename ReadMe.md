@@ -79,6 +79,14 @@ This will execute test class DataSourceTest.java to test your main boot applicat
 
 ![Connection|512x397, 90%](connPool.png)
 
+<h3> Business Sequence Diagram - findAllEmployees() </h3>
+
+![Business|512x397, 90%](seqDiagram.png)
+
+<h3> Database Diagram </h3>
+
+![Database|512x397, 90%](mysql.png)
+
 <h3> License </h3>
 
 Licensed under GNU General Public License v3.0. Please see [LICENSE](LICENSE) for details.
